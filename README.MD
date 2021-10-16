@@ -1,6 +1,6 @@
 Reactor Crawler
 ==========
-
+[![reactor-crw](https://github.com/reactor-joy/reactor-crw/actions/workflows/go.yml/badge.svg)](https://github.com/reactor-joy/reactor-crw/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/reactor-joy/reactor-crw)](https://goreportcard.com/report/github.com/reactor-joy/reactor-crw)
 
 Simple CLI content crawler for [Joyreactor](http://joyreactor.cc). He'll find all media content on the 
