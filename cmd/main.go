@@ -25,27 +25,27 @@ var (
 	savePath   string
 	cookie     string
 	maxWorkers int
-	allPages   bool
+	singlePage bool
 
 	crawlerCmd = &cobra.Command{
 		Use:   "reactor-crw",
 		Short: "Grab your favorite content from joyreactor.cc",
-		Long:  "Allows to quickly download all content by its direct url or entire" +
-				" tag or fandom from joyreactor.cc.\nExample: reactor-crw -d \".\" " +
-				"-p \"http://joyreactor.cc/tag/someTag/all\" -w 2 -c \"cookie-string\"",
-		Run:   run,
+		Long: "Allows to quickly download all content by its direct url or entire" +
+			" tag or fandom from joyreactor.cc.\nExample: reactor-crw -d \".\" " +
+			"-p \"http://joyreactor.cc/tag/someTag/all\" -w 2 -c \"cookie-string\"",
+		Run: run,
 	}
 )
 
 func init() {
 	hd, _ := os.UserHomeDir()
 
-	crawlerCmd.Flags().StringVarP(&search, "search", "s", "image,gif", "A comma separated list of content types that should be downloaded. Possible values: image,gif,webm,mp4. Example: -s \"image,webm\"")
+	crawlerCmd.Flags().StringVarP(&search, "search", "s", "image,gif", "A comma separated list of content types that should be downloaded.\nPossible values: image,gif,webm,mp4. Example: -s \"image,webm\"")
 	crawlerCmd.Flags().StringVarP(&path, "path", "p", "", "Provide a full page URL")
-	crawlerCmd.Flags().StringVarP(&savePath, "destination", "d", hd, "Save path for content. User's home folder will be used by default.")
-	crawlerCmd.Flags().StringVarP(&cookie, "cookie", "c", "", "User's cookie. Some content may be unavailable without it.")
+	crawlerCmd.Flags().StringVarP(&savePath, "destination", "d", hd, "Save path for content. Default value is a user's home folder \n(example C:\\Users\\username for Windows)")
+	crawlerCmd.Flags().StringVarP(&cookie, "cookie", "c", "", "User's cookie. Some content may be unavailable without it")
 	crawlerCmd.Flags().IntVarP(&maxWorkers, "workers", "w", 1, "Amount of workers")
-	crawlerCmd.Flags().BoolVarP(&allPages, "all", "a", true, "Crawl all related pages using pagination.")
+	crawlerCmd.Flags().BoolVarP(&singlePage, "single-page", "o", false, "Crawl only one page")
 
 	_ = crawlerCmd.MarkFlagRequired("path")
 }
@@ -69,7 +69,7 @@ func run(_ *cobra.Command, _ []string) {
 		&reactor_crw.HtmlCrawler{
 			Transport: t,
 			Parser:    &parser.Html{},
-			MultiPage: allPages,
+			MultiPage: !singlePage,
 		},
 		maxWorkers,
 		ch,
