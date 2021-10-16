@@ -1,3 +1,4 @@
+//go:build unit
 // +build unit
 
 package fs_test
@@ -6,8 +7,8 @@ import (
 	"os"
 	"testing"
 
-	"reactor-crw/handler/fs"
 	"github.com/stretchr/testify/require"
+	"reactor-crw/handler/fs"
 )
 
 func TestNewPathResolver(t *testing.T) {

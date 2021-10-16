@@ -1,3 +1,4 @@
+//go:build unit
 // +build unit
 
 package reactor_crw_test

@@ -27,7 +27,7 @@ func NewHttpTransport(c *http.Client, h Headers) *HttpTransport {
 
 	t := &HttpTransport{
 		headers: defaultHeaders,
-		client: c,
+		client:  c,
 	}
 
 	for k, v := range h {
