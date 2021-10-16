@@ -7,10 +7,9 @@ VERSION=0.0.1
 
 build:
 	@mkdir -p $(BIN_DIR)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ${BUILD_PATH}_${VERSION}_macOS_64bit cmd/main.go
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${BUILD_PATH}_${VERSION}_Linux_64bit cmd/main.go
-	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o ${BUILD_PATH}_${VERSION}_Windows_32bit.exe cmd/main.go
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ${BUILD_PATH}_${VERSION}_Windows_64bit.exe cmd/main.go
+	GOOS=darwin GOARCH=amd64 go build -ldflags "-s -w" -o ${BUILD_PATH}_${VERSION}_macOS_64bit cmd/main.go && upx --best --lzma ${BUILD_PATH}_${VERSION}_macOS_64bit
+	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o ${BUILD_PATH}_${VERSION}_Linux_64bit cmd/main.go && upx --best --lzma ${BUILD_PATH}_${VERSION}_Linux_64bit
+	GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o ${BUILD_PATH}_${VERSION}_Windows_64bit.exe cmd/main.go && upx --best --lzma ${BUILD_PATH}_${VERSION}_Windows_64bit.exe
 
 clean:
 	@go clean
