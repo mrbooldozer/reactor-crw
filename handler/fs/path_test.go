@@ -44,8 +44,6 @@ func TestPathResolver_CreateFolder(t *testing.T) {
 		{name: "test"},
 		{name: "_123_test"},
 		{name: "109483___"},
-		{name: "%&*$test", errExpected: false},
-		{name: "byVPBIQvHVU?wmode=transparent&rel=0", errExpected: false},
 	}
 
 	for _, folder := range folders {
@@ -72,9 +70,6 @@ func TestPathResolver_CreateFile(t *testing.T) {
 	require.Error(t, err, "Expected an error during file. Folder wasn't created yet.")
 
 	_ = p.CreateFolder("test")
-
-	//_, err = p.CreateFile(" ")
-	//require.Error(t, err, "Expected an error during creating file with an empty name")
 
 	_, err = p.CreateFile("filename")
 	require.NoError(t, err, "Wasn't expected an error during creating filename")
