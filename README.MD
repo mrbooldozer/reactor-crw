@@ -1,6 +1,8 @@
 Reactor Crawler
 ==========
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/reactor-joy/reactor-crw)](https://goreportcard.com/report/github.com/reactor-joy/reactor-crw)
+
 Simple CLI content crawler for [Joyreactor](http://joyreactor.cc). He'll find all media content on the 
 page you've provided and save it. If there will be any kind of pagination... he'll go through all pages
 as well unless you'll tell him to not.
@@ -21,7 +23,7 @@ Here's the quickest way to download something and test the crawler:
 There's a list of optional flags that adds a little more control over the crawler.
 Here is a full output from `$ reactor-crw --help`: 
 
-```sh
+```
 $ reactor-crw --help
 
 Allows to quickly download all content by its direct url or entire tag or fandom from joyreactor.cc.
