@@ -15,13 +15,12 @@ as well unless you'll tell him to not.
 
 Here's the quickest way to download something and test the crawler:
 * Download a build according to your OS.
-* Pick some URL from [Joyreactor](http://joyreactor.cc). For example `http://joyreactor.cc/tag/digital+art`.
-* Run the crawler `reactor-crw -p "http://joyreactor.cc/tag/digital+art"`
+* Pick some URL from [Joyreactor](http://joyreactor.cc).
+* Run the crawler `$ reactor-crw -p "http://joyreactor.cc/tag/digital+art"`
 
 ## What else
 
 There's a list of optional flags that adds a little more control over the crawler.
-Here is a full output from `$ reactor-crw --help`: 
 
 ```
 $ reactor-crw --help
@@ -46,8 +45,12 @@ Flags:
 
 From all flags only `-p --path` is required. All other flags can be omitted and default values will be used.
 
-Here's another example that will download only `mp4` content from the post and will save it to the current directory:
+Here's another example:
 
-```sh
-$ reactor-crw -p "http://joyreactor.cc/post/000000" -d "." -s "mp4" -o
 ```
+$ reactor-crw -p "http://joyreactor.cc/post/000000" -d "." -s "mp4" -o -c "cookies from joyreactor"
+```
+This one will download only `mp4` content from the post and will save it to the current directory.
+`-o` means that only the current page will be parsed, and the user's cookie `-s` will be used by the crawler.
+
+**Note**: some content may be parsed only with user's cookie.
