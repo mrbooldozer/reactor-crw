@@ -57,11 +57,10 @@ func (c *Client) Run(path string, search string) error {
 	}()
 
 	collectedData, err := c.crawler.Fetch(path, strings.Split(search, ","))
+	c.TotalSources <- len(collectedData)
 	if err != nil || len(collectedData) == 0 {
 		return err
 	}
-
-	c.TotalSources <- len(collectedData)
 
 	contentHandlerTasks := make(chan string, len(collectedData))
 	for task := range collectedData {

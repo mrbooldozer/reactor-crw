@@ -2,10 +2,9 @@ package parser
 
 import (
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"io"
 	"net/url"
-
-	"github.com/PuerkitoBio/goquery"
 )
 
 // Html represents a HTML parser implementation.
@@ -36,7 +35,7 @@ func (h *Html) FindAttrMap(r io.Reader, q QueryAttrMap, res QueryResult) error {
 	for query, attr := range q {
 		doc.Find(query).Each(func(_ int, s *goquery.Selection) {
 			val, ok := s.Attr(attr)
-			if !ok {
+			if !ok || val == "javascript:" {
 				return
 			}
 

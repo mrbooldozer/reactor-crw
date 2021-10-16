@@ -103,7 +103,7 @@ func (c *HtmlCrawler) resolveMaxPage(path string) (int, error) {
 
 	intPa, err := strconv.Atoi(pa)
 	if err != nil {
-		return 0, err
+		return 0, fmt.Errorf("cannot prosess pagination: %w", err)
 	}
 
 	return intPa, nil

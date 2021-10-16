@@ -91,6 +91,10 @@ func progress(total, task <-chan int, err <-chan error) {
 	fmt.Print("\n>>> Trying to count the amount of links. Please wait...\n\n")
 
 	t := <-total
+	if t == 0 {
+		fmt.Print(">>> No links were found. Stopping...\n")
+		return
+	}
 	fmt.Printf(">>> %d links were found. Start downloading\n\n", t)
 
 	prg := mpb.New(mpb.WithWidth(64))
